@@ -10,6 +10,7 @@ import { useFetch } from '../../../../utils/useFetch';
 import { Stat } from '../../../../components/Stat';
 import { MainTitle } from '../../../../components/MainTitle';
 import { PlayerGroup } from '../../../../components/PlayerGroup';
+import { Error } from '../../../../components/Error';
 
 interface MatchPageProps {}
 
@@ -41,21 +42,30 @@ const MatchPage: React.FC<MatchPageProps> = () => {
   }
 
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   const matchData = data.data;
   const teams = matchData.teams;
+  console.log(teams);
   const sortedTeamKeys = Object.entries(teams)
     .sort(([, a], [, b]) => a.teamPlacement - b.teamPlacement)
     .map(([k]) => k);
   const playerTeamKey = Object.keys(teams).find((key) => {
-    const playerIndex = teams[key].players.findIndex(
-      (player) => player.player.username === name
-    );
+    const playerIndex = teams[key].players.findIndex((player) => {
+      console.log(
+        player.player.username === name,
+        player.player.username,
+        name
+      );
+      return player.player.username === name;
+    });
     return playerIndex > -1;
   });
-  console.log(playerTeamKey);
 
   return (
     <div>

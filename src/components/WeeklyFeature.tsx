@@ -1,4 +1,5 @@
 import { LoaderSvg } from '../components/LoaderSvg';
+import { Error } from '../components/Error';
 import { useWeeklyLeaderboard } from '../utils/useWeeklyLeaderboard';
 import { StatRow } from './StatRow';
 
@@ -14,7 +15,11 @@ export const WeeklyFeature: React.FC<WeeklyFeatureProps> = ({}) => {
     );
   }
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   if (!weeklyLeaderboard.kdRatioLeader || !weeklyLeaderboard.killsLeader) {

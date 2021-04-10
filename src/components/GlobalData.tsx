@@ -2,6 +2,7 @@ import { useFetch } from '../utils/useFetch';
 import { LoaderSvg } from './LoaderSvg';
 import { Countdown } from './Countdown';
 import { LastUpdated } from './LastUpdated';
+import { Error } from './Error';
 import { Stat } from './Stat';
 
 interface GlobalDataProps {
@@ -19,7 +20,11 @@ export const GlobalData: React.FC<GlobalDataProps> = ({
   );
 
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   if (status !== 'fetched') {

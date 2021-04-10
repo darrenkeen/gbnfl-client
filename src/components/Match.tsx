@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import { formatDate } from '../utils/formatDate';
-import { MODE_KEYS } from '../constants';
+import { MODE_KEYS, WITH_RANK_MODE } from '../constants';
 import Link from 'next/link';
 
 interface MatchProps {
@@ -62,7 +62,7 @@ export const Match: React.FC<MatchProps> = ({
             </span>
             <span className="block text-white">{formatDate(startSeconds)}</span>
           </div>
-          {MODE_KEYS[mode] !== MODE_KEYS.br_dmz_plnbld && (
+          {WITH_RANK_MODE.includes(mode) && (
             <MatchItem title="rank" value={rank} />
           )}
         </div>

@@ -19,7 +19,6 @@ const PlayerPage: React.FC<PlayerPageProps> = () => {
   const { name } = router.query;
   const [player, setPlayer] = useState<PlayerTrophies>(null);
   const [error, setError] = useState<boolean>(false);
-  const [latest, setLatest] = useState<CodLatestData>(null);
 
   useEffect(() => {
     if (name) {

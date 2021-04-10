@@ -6,6 +6,7 @@ import { Stat } from './Stat';
 import { LoaderSvg } from './LoaderSvg';
 import { LastUpdated } from './LastUpdated';
 import { Countdown } from './Countdown';
+import { Error } from './Error';
 import { MODE_KEYS } from '../constants';
 
 export const WeeklyPlayer: React.FC<{ id: string; platform: string }> = ({
@@ -26,7 +27,11 @@ export const WeeklyPlayer: React.FC<{ id: string; platform: string }> = ({
   }
 
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   return (
