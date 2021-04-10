@@ -80,6 +80,7 @@ export const LatestMatches: React.FC<LatestMatchesProps> = ({
                 kdRatio={match.playerStats.kdRatio}
                 mode={match.mode}
                 playerRouteName={playerRouteName}
+                inGameId={match.player.username}
               />
             ))}
           </div>

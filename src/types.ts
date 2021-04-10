@@ -75,6 +75,9 @@ export interface CodLatestMatch {
   duration: number;
   gameType: 'wz';
   playerCount: number;
+  player: {
+    username: string;
+  };
   playerStats: {
     kills: number;
     matchXp: number;
