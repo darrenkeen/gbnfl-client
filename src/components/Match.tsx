@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 
 import { formatDate } from '../utils/formatDate';
-import { MODE_KEYS } from '../constants';
+import { MODE_KEYS, WITH_RANK_MODE } from '../constants';
 import Link from 'next/link';
 
 interface MatchProps {
@@ -13,6 +13,7 @@ interface MatchProps {
   matchId: string;
   mode: keyof typeof MODE_KEYS;
   playerRouteName: string;
+  inGameId: string;
 }
 
 const MatchItem: React.FC<{ title?: string; value: number | string }> = ({
@@ -51,9 +52,14 @@ export const Match: React.FC<MatchProps> = ({
   mode,
   matchId,
   playerRouteName,
+  inGameId,
 }) => {
   return (
-    <Link href={`/player/${playerRouteName}/match/${matchId}`}>
+    <Link
+      href={`/player/${playerRouteName}/match/${matchId}/${encodeURIComponent(
+        inGameId
+      )}`}
+    >
       <div className="px-4 py-5 mb-5 border-t border-b shadow-lg cursor-pointer bg-gradient-to-r from-background-300 to-background-400 border-background-500 rounded-xl">
         <div className="flex justify-between mb-5">
           <div className="text-left">
@@ -62,7 +68,7 @@ export const Match: React.FC<MatchProps> = ({
             </span>
             <span className="block text-white">{formatDate(startSeconds)}</span>
           </div>
-          {MODE_KEYS[mode] !== MODE_KEYS.br_dmz_plnbld && (
+          {WITH_RANK_MODE.includes(mode) && (
             <MatchItem title="rank" value={rank} />
           )}
         </div>

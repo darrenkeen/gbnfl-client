@@ -3,13 +3,14 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import React from 'react';
 
-import { LoaderSvg } from '../../../../components/LoaderSvg';
-import { MODE_KEYS } from '../../../../constants';
-import { CachedData, MatchData } from '../../../../types';
-import { useFetch } from '../../../../utils/useFetch';
-import { Stat } from '../../../../components/Stat';
-import { MainTitle } from '../../../../components/MainTitle';
-import { PlayerGroup } from '../../../../components/PlayerGroup';
+import { LoaderSvg } from '../../../../../components/LoaderSvg';
+import { MODE_KEYS } from '../../../../../constants';
+import { CachedData, MatchData } from '../../../../../types';
+import { useFetch } from '../../../../../utils/useFetch';
+import { Stat } from '../../../../../components/Stat';
+import { MainTitle } from '../../../../../components/MainTitle';
+import { PlayerGroup } from '../../../../../components/PlayerGroup';
+import { Error } from '../../../../../components/Error';
 
 interface MatchPageProps {}
 
@@ -25,11 +26,11 @@ const matchDuration = (time: number) => {
 
 const MatchPage: React.FC<MatchPageProps> = () => {
   const router = useRouter();
-  const { matchId, name } = router.query;
+  const { matchId, inGameId } = router.query;
   const { data, status, error } = useFetch<CachedData<MatchData>>(
     `/data/match/${matchId}`,
     null,
-    !matchId || !name
+    !matchId || !inGameId
   );
 
   if (status !== 'fetched') {
@@ -41,7 +42,11 @@ const MatchPage: React.FC<MatchPageProps> = () => {
   }
 
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   const matchData = data.data;
@@ -50,12 +55,26 @@ const MatchPage: React.FC<MatchPageProps> = () => {
     .sort(([, a], [, b]) => a.teamPlacement - b.teamPlacement)
     .map(([k]) => k);
   const playerTeamKey = Object.keys(teams).find((key) => {
-    const playerIndex = teams[key].players.findIndex(
-      (player) => player.player.username === name
-    );
+    const playerIndex = teams[key].players.findIndex((player) => {
+      console.log(
+        player.player.username === inGameId,
+        player.player.username,
+        inGameId
+      );
+      return player.player.username === inGameId;
+    });
     return playerIndex > -1;
   });
+
   console.log(playerTeamKey);
+
+  if (!playerTeamKey) {
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message="Can't find player in match" />
+      </div>
+    );
+  }
 
   return (
     <div>

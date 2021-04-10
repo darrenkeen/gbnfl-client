@@ -4,6 +4,7 @@ import { LoaderSvg } from './LoaderSvg';
 import { LastUpdated } from './LastUpdated';
 import { Countdown } from './Countdown';
 import { Match } from './Match';
+import { Error } from './Error';
 
 interface LatestMatchesProps {
   platformId: string;
@@ -39,7 +40,11 @@ export const LatestMatches: React.FC<LatestMatchesProps> = ({
   );
 
   if (error) {
-    return null;
+    return (
+      <div className="flex justify-center mb-10">
+        <Error message={error} />
+      </div>
+    );
   }
 
   if (status !== 'fetched') {
@@ -75,6 +80,7 @@ export const LatestMatches: React.FC<LatestMatchesProps> = ({
                 kdRatio={match.playerStats.kdRatio}
                 mode={match.mode}
                 playerRouteName={playerRouteName}
+                inGameId={match.player.username}
               />
             ))}
           </div>

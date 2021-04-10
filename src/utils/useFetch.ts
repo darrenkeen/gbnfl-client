@@ -9,6 +9,7 @@ export const useFetch = <T>(
   const [status, setStatus] = useState<'fetching' | 'idle' | 'fetched'>('idle');
   const [error, setError] = useState<string>(null);
   const [data, setData] = useState<T>(initial);
+  console.log(query, error);
 
   useEffect(() => {
     setStatus('fetching');
@@ -21,7 +22,7 @@ export const useFetch = <T>(
         })
         .catch((error) => {
           console.error(error);
-          setError('There was a problem getting weekly data');
+          setError(`There was a problem fetching ${query}`);
           setStatus('fetched');
         });
     }

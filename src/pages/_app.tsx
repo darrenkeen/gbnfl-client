@@ -1,8 +1,8 @@
 import { AppProps } from 'next/app';
 import Axios from 'axios';
 
-import '../styles/tailwind.css';
 import Navbar from '../components/Navbar';
+import '../styles/tailwind.css';
 
 Axios.defaults.baseURL = process.env.NEXT_PUBLIC_API_URL;
 Axios.defaults.withCredentials = true;
