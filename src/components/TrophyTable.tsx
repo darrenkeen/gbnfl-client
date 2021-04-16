@@ -83,11 +83,18 @@ export const TrophyTable = () => {
           </div>
         </div>
       </div>
-      <div className="flex justify-center px-5 mb-10">
+      <div className="justify-center px-5 mb-10">
         <Link href="/add">
-          <button className="w-full py-2 mb-10 font-bold text-white uppercase border border-red-100 text-md bg-gradient-to-t from-red-100 to-red-200 text-x rounded-3xl hover:from-red-200 hover:to-red-100 focus:outline-none">
+          <button className="w-full py-2 mb-3 font-bold text-white uppercase border border-red-100 text-md bg-gradient-to-t from-red-100 to-red-200 text-x rounded-3xl hover:from-red-200 hover:to-red-100 focus:outline-none">
             Add trophy
           </button>
+        </Link>
+        <Link href="/season/2">
+          <div>
+            <button className="w-full py-2 mb-10 font-thin text-white uppercase border border-white text-md text-x rounded-3xl focus:outline-none">
+              View wins
+            </button>
+          </div>
         </Link>
       </div>
     </div>
