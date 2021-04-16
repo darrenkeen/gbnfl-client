@@ -6,10 +6,9 @@ import { GlobalData } from '../../../components/GlobalData';
 import { LatestMatches } from '../../../components/LatestMatches';
 import { LoaderSvg } from '../../../components/LoaderSvg';
 import { MainTitle } from '../../../components/MainTitle';
-import { Match } from '../../../components/Match';
 import { Stat } from '../../../components/Stat';
 import { WeeklyPlayer } from '../../../components/WeeklyPlayer';
-import { CodLatestData, CodLifetimeData, PlayerTrophies } from '../../../types';
+import { PlayerTrophies } from '../../../types';
 import { getPlatformType } from '../../../utils/getPlatformType';
 
 interface PlayerPageProps {}
