@@ -13,8 +13,12 @@ export const MODE_KEYS = {
 };
 
 export const WITH_RANK_MODE = [
-  'br_brduos',
-  'br_brquads',
   'br_brsolo',
+  'br_brz_brsolo',
+  'br_brduos',
+  'br_brz_brduos',
   'br_brtrios',
+  'br_brz_brtrios',
+  'br_brquads',
+  'br_brz_brquads',
 ];
