@@ -56,17 +56,10 @@ const MatchPage: React.FC<MatchPageProps> = () => {
     .map(([k]) => k);
   const playerTeamKey = Object.keys(teams).find((key) => {
     const playerIndex = teams[key].players.findIndex((player) => {
-      console.log(
-        player.player.username === inGameId,
-        player.player.username,
-        inGameId
-      );
       return player.player.username === inGameId;
     });
     return playerIndex > -1;
   });
-
-  console.log(playerTeamKey);
 
   if (!playerTeamKey) {
     return (

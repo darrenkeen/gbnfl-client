@@ -9,7 +9,6 @@ export const useFetch = <T>(
   const [status, setStatus] = useState<'fetching' | 'idle' | 'fetched'>('idle');
   const [error, setError] = useState<string>(null);
   const [data, setData] = useState<T>(initial);
-  console.log(query, error);
 
   useEffect(() => {
     setStatus('fetching');

@@ -24,8 +24,6 @@ export default function Season() {
     );
   }
 
-  console.log(data);
-
   return (
     <div>
       <Head>
@@ -42,6 +40,8 @@ export default function Season() {
               <h3 className="text-center text-white uppercase">
                 {new Date(game.dateTime).toDateString()}
               </h3>
+              <h2>{game.id}</h2>
+              <h2>{game.matchId}</h2>
               <div className="mt-5 text-center">
                 {game.trophies.map((trophy) => (
                   <div className="block mb-2" key={trophy.id}>
