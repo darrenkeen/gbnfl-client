@@ -83,12 +83,9 @@ const PlayerPage: React.FC<PlayerPageProps> = () => {
         <WeeklyPlayer id={player.platformId} platform={player.platformType} />
       </div>
       <div className="mb-20">
-        <MainTitle title="Season 2" />
+        <MainTitle title="Season Stats" />
         <div className="px-5 mt-5">
-          <div className="grid grid-cols-2 gap-10">
-            <Stat name="Trophies" value={player.trophyCount.toString()} />
-            <Stat name="Kills" value={player.totalKills.toString()} />
-          </div>
+          <h3 className="text-center text-white">Coming soon</h3>
         </div>
       </div>
       <div className="mb-20">

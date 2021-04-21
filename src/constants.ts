@@ -10,6 +10,11 @@ export const MODE_KEYS = {
   br_brz_brquads: 'Quads',
   br_dmz_plnbld: 'Blood Money',
   br_dmz_plunquad: 'Blood Money',
+  br_reveal_dov: 'Event',
+  br_rebirth_rbrthquad: 'Rebirth',
+  br_mini_rebirth_mini_royale_duos: 'Rebirth Mini',
+  br_kingslayer_kingsltrios: 'Kingslayer Trios',
+  br_mini_miniroyale: 'Mini Royale',
 };
 
 export const WITH_RANK_MODE = [
@@ -21,4 +26,7 @@ export const WITH_RANK_MODE = [
   'br_brz_brtrios',
   'br_brquads',
   'br_brz_brquads',
+  'br_rebirth_rbrthquad',
+  'br_mini_rebirth_mini_royale_duos',
+  'br_mini_miniroyale',
 ];
