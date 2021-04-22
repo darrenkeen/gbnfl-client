@@ -63,7 +63,6 @@ export const WeeklyPlayer: React.FC<{ id: string; platform: string }> = ({
               </h3>
             </div>
             <div className="px-5">
-              {!data.data[key].kdRatio ? console.log(data.data[key]) : ''}
               <div className="grid w-full grid-cols-2 gap-10">
                 <Stat name="K/D" value={data.data[key].kdRatio.toString()} />
                 <Stat name="Kills" value={data.data[key].kills.toString()} />
