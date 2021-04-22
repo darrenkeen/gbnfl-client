@@ -4,12 +4,12 @@ import { useState, useEffect } from 'react';
 export const useFetch = <T>(
   query: string,
   initial: T,
-  pause: boolean = false
+  pause: boolean = false,
+  watch?: any
 ) => {
   const [status, setStatus] = useState<'fetching' | 'idle' | 'fetched'>('idle');
   const [error, setError] = useState<string>(null);
   const [data, setData] = useState<T>(initial);
-  console.log(query, error);
 
   useEffect(() => {
     setStatus('fetching');
@@ -26,7 +26,7 @@ export const useFetch = <T>(
           setStatus('fetched');
         });
     }
-  }, [pause]);
+  }, [pause, watch]);
 
   return { status, error, data };
 };
