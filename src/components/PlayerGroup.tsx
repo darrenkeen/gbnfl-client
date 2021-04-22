@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 
-import { MODE_KEYS } from '../constants';
+import { MODE_KEYS, WITH_RANK_MODE } from '../constants';
 import { MatchPlayers } from '../types';
 
 interface PlayerGroupProps {
@@ -97,8 +97,11 @@ export const PlayerGroup: React.FC<PlayerGroupProps> = ({
       <div className="relative z-10 px-4 py-3 border-t border-b shadow-lg bg-gradient-to-r from-background-300 to-background-400 border-background-500 rounded-xl">
         <div className="flex justify-between">
           <PlayerGroupItem title="Kills" value={kills} />
-          <PlayerGroupItem title="K/D" value={teamKdRatio?.toFixed(2)} />
-          {MODE_KEYS[mode] !== MODE_KEYS.br_dmz_plnbld && (
+          <PlayerGroupItem
+            title="K/D"
+            value={teamKdRatio?.toFixed(2) || '0.00'}
+          />
+          {WITH_RANK_MODE[mode] && (
             <PlayerGroupItem title="rank" value={rank} />
           )}
         </div>

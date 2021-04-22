@@ -11,6 +11,7 @@ export const Countdown: React.FC<CountdownProps> = ({
 }) => {
   const date = new Date(cacheTimestamp);
   const timePlusMinutes = date.setMinutes(date.getMinutes() + cacheMinutes);
+
   const renderer = ({ minutes, seconds }) => {
     return (
       <span className="text-gray-400">
