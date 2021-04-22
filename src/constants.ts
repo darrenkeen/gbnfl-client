@@ -14,6 +14,7 @@ export const MODE_KEYS = {
   br_rebirth_rbrthquad: 'Rebirth',
   br_mini_rebirth_mini_royale_duos: 'Rebirth Mini',
   br_kingslayer_kingsltrios: 'Kingslayer Trios',
+  br_kingslayer_rebirth_king_slayer: 'Kingslayer Rebirth',
   br_mini_miniroyale: 'Mini Royale',
 };
 

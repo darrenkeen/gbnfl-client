@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
@@ -9,10 +9,29 @@ import { useFetch } from '../utils/useFetch';
 import { LoaderSvg } from '../components/LoaderSvg';
 import { Error } from '../components/Error';
 import { PlayerTrophies } from '../types';
+import axios from 'axios';
+import { Button } from './Button';
 
 export const TrophyTable = () => {
-  const { status, data, error } = useFetch<PlayerTrophies[]>('/trophies/2', []);
+  const { status, data, error } = useFetch<PlayerTrophies[]>('/trophies/3', []);
+  const [fetchingTrackMatches, setFetchingTrackMatches] = useState(false);
   const router = useRouter();
+
+  const trackMatches = () => {
+    setFetchingTrackMatches(true);
+    axios
+      .get('/matches/track-match')
+      .then((res) => {
+        if (res.status !== 204) {
+          console.error({ error: 'Not 204', message: res });
+        }
+        setFetchingTrackMatches(false);
+      })
+      .catch((e) => {
+        console.error(e);
+        setFetchingTrackMatches(false);
+      });
+  };
 
   if (status !== 'fetched') {
     return (
@@ -84,17 +103,18 @@ export const TrophyTable = () => {
         </div>
       </div>
       <div className="justify-center px-5 mb-10">
-        <Link href="/add">
-          <button className="w-full py-2 mb-3 font-bold text-white uppercase border border-red-100 text-md bg-gradient-to-t from-red-100 to-red-200 text-x rounded-3xl hover:from-red-200 hover:to-red-100 focus:outline-none">
-            Add trophy
-          </button>
-        </Link>
-        <Link href="/season/2">
-          <div>
-            <button className="w-full py-2 mb-10 font-thin text-white uppercase border border-white text-md text-x rounded-3xl focus:outline-none">
-              View wins
-            </button>
-          </div>
+        <Button
+          label="Check for trophies"
+          type="full"
+          disabled={fetchingTrackMatches}
+          onClick={() => {
+            if (!fetchingTrackMatches) {
+              trackMatches();
+            }
+          }}
+        />
+        <Link href="/season/3">
+          <Button label="View wins" type="outline" />
         </Link>
       </div>
     </div>
